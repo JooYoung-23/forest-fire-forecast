@@ -1,29 +1,38 @@
 function initializeMap(geojson) {
-	var map = L.map('mapid').setView([37.8, 128], 8);
+	var map = new google.maps.Map(document.getElementById('mapid'), {
+		center: {lat: 37.8, lng: 128},
+		zoom: 8
+	});
 
-	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		id: 'mapbox/streets-v11',
-		tileSize: 512,
-		zoomOffset: -1
-	}).addTo(map);
+	var tileLayer = new google.maps.ImageMapType({
+		getTileUrl: function(tileCoord, zoom) {
+			return "https://mt1.google.com/vt/lyrs=m&x=" + tileCoord.x + "&y=" + tileCoord.y + "&z=" + zoom;
+		},
+		tileSize: new google.maps.Size(256, 256),
+		name: "Google Map",
+		maxZoom: 18
+	});
 
-	L.geoJSON(geojson, {
+	map.mapTypes.set('google_map', tileLayer);
+	map.setMapTypeId('google_map');
+
+	var geojsonLayer = new google.maps.Data({
 		style: function(feature) {
 			return {
-				weight: 1,
-				opacity: 1,
-				color: 'black',
+				strokeWeight: 1,
+				strokeOpacity: 1,
+				strokeColor: 'black',
 				fillOpacity: 0
 			};
-		},
-		onEachFeature: function(feature, layer) {
-			layer.on('click', function(e) {
-				alert("Name: " + feature.properties.SGG_NM + "\nRisk Level: " + feature.properties.risk);
-			});
 		}
-	}).addTo(map);
+	});
+
+	geojsonLayer.addGeoJson(geojson);
+
+	geojsonLayer.addListener('click', function(event) {
+		var feature = event.feature;
+		alert("Name: " + feature.getProperty('SGG_NM') + "\nRisk Level: " + feature.getProperty('risk'));
+	});
+
+	geojsonLayer.setMap(map);
 }
