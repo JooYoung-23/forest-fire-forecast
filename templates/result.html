@@ -15,17 +15,13 @@
 	</head>
 	<body class="is-preload" id="myself_body">
 
-		<div id=info_container></div>
-		<div id=map_container>
-			<div id="map"></div>
-		</div>
 		<div id=request_container>
 			<form method="post" action="#">
 				<div class="fields">
 					<div class="field">
-						<label for="demo-name">DATE</label>
+						<label for="demo-name">NEW DATE</label>
 						<input type="text" name="demo-name" id="demo-name" value="" placeholder="YYYY-MM-DD"
-							pattern="\d{4}-\d{2}-\d{2}" />
+							pattern="\d{4}-\d{2}-\d{2}" autocomplete="off"/>
 					</div>
 				</div>
 				<ul class="actions">
@@ -33,12 +29,32 @@
 				</ul>
 			</form>
 		</div>
+		<div id=map_container>
+			<div id="map"></div>
+		</div>
 
 		<!-- Scripts -->
 			<script src="static/js/jquery.min.js"></script>
 			<script src="static/js/browser.min.js"></script>
 			<script src="static/js/breakpoints.min.js"></script>
 			<script src="static/js/util.js"></script>
+			<script>
+				const input = document.getElementById('demo-name');
+				const minDate = new Date('2010-01-01');
+				const maxDate = new Date('2023-12-31');
+				const today = new Date();
+
+				input.addEventListener('input', function() {
+					const inputValue = input.value;
+					const inputDate = new Date(inputValue);
+
+					if (inputDate < minDate || inputDate > maxDate || isNaN(inputDate) || inputDate > today) {
+						input.setCustomValidity('Enter a valid date between 2010 and TODAY (YYYY-MM-DD)');
+					} else {
+						input.setCustomValidity('');
+					}
+				});
+			</script>
 			<script src="static/js/main.js"></script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLMZHPxF-a2DKkHLtDFJYXw7xBdX_szpo&callback=initMap"></script>
 	</body>
