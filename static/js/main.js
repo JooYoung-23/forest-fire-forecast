@@ -10,6 +10,7 @@
 		$body = $('body'),
 		$wrapper = $('#wrapper'),
 		$header = $('#header'),
+		$map_container = $('#map_container'),
 		$footer = $('#footer'),
 		$main = $('#main'),
 		$main_articles = $main.children('article');
@@ -93,6 +94,7 @@
 								$main_articles.removeClass('active');
 
 							// Hide header, footer.
+								$map_container.hide();
 								$header.hide();
 								$footer.hide();
 
@@ -167,6 +169,7 @@
 							setTimeout(function() {
 
 								// Hide header, footer.
+									$map_container.hide();
 									$header.hide();
 									$footer.hide();
 
@@ -228,6 +231,7 @@
 							// Show footer, header.
 								$footer.show();
 								$header.show();
+								$map_container.show();
 
 							// Unmark as visible.
 								$body.removeClass('is-article-visible');
@@ -263,6 +267,7 @@
 						// Show footer, header.
 							$footer.show();
 							$header.show();
+							$map_container.show();
 
 						// Unmark as visible.
 							setTimeout(function() {
