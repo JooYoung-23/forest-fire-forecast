@@ -21,7 +21,7 @@
 					<div class="field">
 						<label for="demo-name">NEW DATE</label>
 						<input type="text" name="demo-name" id="demo-name" value="" placeholder="YYYY-MM-DD"
-							pattern="\d{4}-\d{2}-\d{2}" autocomplete="off"/>
+							pattern="\d{4}-\d{2}-\d{2}" autocomplete="off" required/>
 					</div>
 				</div>
 				<ul class="actions">
@@ -35,8 +35,60 @@
 
 		<div id="main">
 			<article id="intro">
-				<h2 class="major">Intro</h2>
-				<p>Name: <span id="name"></span></p>
+				<h2 class="major"><span id="name"></span></h2>
+				<div id="result_container">
+					<div id="result">
+						<img id="image_result" src="../static/images/result.png" alt="Image" width="300" height="auto"/>
+					</div>
+					<div class="radio">
+						<input type="radio" name="radioButton" value="1" onclick="showDiv('div1')" checked> <i class="fa fa-check-circle checked" aria-hidden="true"></i> Option 1<br>
+						<input type="radio" name="radioButton" value="2" onclick="showDiv('div2')"> <i class="fa fa-check-circle" aria-hidden="true"></i> Option 2<br>
+						<input type="radio" name="radioButton" value="3" onclick="showDiv('div3')"> <i class="fa fa-check-circle" aria-hidden="true"></i> Option 3<br>
+						<input type="radio" name="radioButton" value="4" onclick="showDiv('div4')"> <i class="fa fa-check-circle" aria-hidden="true"></i> Option 4<br>
+					</div>
+					<div id="visualization">
+						<div id="div1" class="">
+							<h4 class="major">SUMMARY: what</h4>
+							<div class="visualization_img_container">
+								<button id="prevButton" onclick="prevImage('div1', 4)">Previous</button>
+								<div class="img_container">
+									<img id="summary" src="../static/images/summary/0.png" alt="Image" />
+								</div>
+								<button id="nextButton" onclick="nextImage('div1', 4)">Next</button>
+							</div>
+						</div>
+						<div id="div2" class="hidden">
+							<h4 class="major">WEATHER: what</h4>
+							<div class="visualization_img_container">
+								<button id="prevButton" onclick="prevImage('div2', 3)">Previous</button>
+								<div class="img_container">
+									<img id="weather" src="../static/images/weather/0.png" alt="Image" />
+								</div>
+								<button id="nextButton" onclick="nextImage('div2', 3)">Next</button>
+							</div>
+						</div>
+						<div id="div3" class="hidden">
+							<h4 class="major">LAND: what</h4>
+							<div class="visualization_img_container">
+								<button id="prevButton" onclick="prevImage('div3', 4)">Previous</button>
+								<div class="img_container">
+									<img id="land" src="../static/images/land/0.png" alt="Image" />
+								</div>								
+								<button id="nextButton" onclick="nextImage('div3', 4)">Next</button>
+							</div>
+						</div>
+						<div id="div4" class="hidden">
+							<h4 class="major">HUMAN: what</h4>
+							<div class="visualization_img_container">
+								<button id="prevButton" onclick="prevImage('div4', 3)">Previous</button>
+								<div class="img_container">
+									<img id="human" src="../static/images/human/0.png" alt="Image" />
+								</div>
+								<button id="nextButton" onclick="nextImage('div4', 3)">Next</button>
+							</div>
+						</div>
+					</div>
+				</div>
 				<p>Risk Level: <span id="risk"></span></p>
 			</article>
 		</div>
@@ -69,6 +121,7 @@
 					}
 				});
 			</script>
+			<script src="static/js/result.js"></script>
 			<script src="static/js/main.js"></script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLMZHPxF-a2DKkHLtDFJYXw7xBdX_szpo&callback=initMap"></script>
 	</body>
