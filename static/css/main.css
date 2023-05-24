@@ -6,6 +6,26 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+
+.wrapper_height{
+	height: 80vh !important;
+}
+
+#input_date{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	width: 500px;
+}
+#input_date div{
+	padding: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
 .checked{
 	color:#FF2B00;
 }
@@ -127,6 +147,19 @@
 }
 #request_container form{
 	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+#request_container form .fields{
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 500px;
 }
 
 #map {
@@ -904,6 +937,12 @@ input, select, textarea {
 
 /* Actions */
 
+	ul.actions.index {
+		padding-left: 41%;
+	}
+	ul.actions.result {
+		padding-left: 22%;
+	}
 	ul.actions {
 		display: -moz-flex;
 		display: -webkit-flex;
@@ -912,7 +951,7 @@ input, select, textarea {
 		cursor: default;
 		list-style: none;
 		margin-left: -1rem;
-		padding-left: 33%;
+		padding-left: 41%;
 		vertical-align: center;
 	}
 
@@ -1332,7 +1371,7 @@ input, select, textarea {
 		-ms-justify-content: space-between;
 		justify-content: space-between;
 		position: relative;
-		min-height: 100vh;
+		/*min-height: 100vh;*/
 		width: 100%;
 		padding: 4rem 2rem;
 		z-index: 3;

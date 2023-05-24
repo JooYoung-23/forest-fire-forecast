@@ -15,7 +15,7 @@
 	<body class="is-preload">
 
 		<!-- Wrapper -->
-			<div id="wrapper">
+			<div id="wrapper" class="wrapper_height">
 
 				<h3 class="major">강원도 산불 위험도 예보</h3>
 				<a href="#guide"><h4>GUIDE</h4></a>
@@ -28,13 +28,30 @@
 							<div class="inner">
 								<form method="post" action="/result">
 									<div class="fields">
-										<div class="field">
-											<label for="demo-name">DATE</label>
-											<input type="text" name="demo-name" id="demo-name" value="" placeholder="YYYY-MM-DD"
-												pattern="\d{4}-\d{2}-\d{2}" autocomplete="off" required/>
+										<div id="input_date" class="field">
+											<div>
+												<label for="year">Year</label>
+												<select id="year" required onchange="updateMonths(this.value)">
+												</select>
+											</div>
+
+											<div>
+												<label for="month">Month</label>
+												<select required id="month" onchange="updateDays()">
+												</select>
+											</div>
+
+											<div>
+												<label for="day">Day</label>
+												<select required id="day" onchange="updateHours()"></select>
+											</div>
+											<div>
+												<label for="time">Time</label>
+												<select required id="time"></select>
+											</div>
 										</div>
 									</div>
-									<ul class="actions">
+									<ul class="actions index">
 										<li><input type="submit" value="RESULT" class="primary" /></li>
 									</ul>
 								</form>
@@ -307,22 +324,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="static/js/breakpoints.min.js"></script>
 			<script src="static/js/util.js"></script>
 			<script src="static/js/main.js"></script>
-			<script>
-				const input = document.getElementById('demo-name');
-				const minDate = new Date('2010-01-01');
-				const maxDate = new Date('2023-12-31');
-				const today = new Date();
-
-				input.addEventListener('input', function() {
-					const inputValue = input.value;
-					const inputDate = new Date(inputValue);
-
-					if (inputDate < minDate || inputDate > maxDate || isNaN(inputDate) || inputDate > today) {
-						input.setCustomValidity('Enter a valid date between 2010 and TODAY (YYYY-MM-DD)');
-					} else {
-						input.setCustomValidity('');
-					}
-				});
-			</script>
+			<script src="static/js/date.js"></script>
 	</body>
 </html>

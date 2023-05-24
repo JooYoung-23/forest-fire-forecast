@@ -18,13 +18,30 @@
 		<div id=request_container>
 			<form method="post" action="#">
 				<div class="fields">
-					<div class="field">
-						<label for="demo-name">NEW DATE</label>
-						<input type="text" name="demo-name" id="demo-name" value="" placeholder="YYYY-MM-DD"
-							pattern="\d{4}-\d{2}-\d{2}" autocomplete="off" required/>
+					<div id="input_date" class="field">
+						<div>
+							<label for="year">Year</label>
+							<select id="year" required onchange="updateMonths(this.value)">
+							</select>
+						</div>
+
+						<div>
+							<label for="month">Month</label>
+							<select required id="month" onchange="updateDays()">
+							</select>
+						</div>
+
+						<div>
+							<label for="day">Day</label>
+							<select required id="day" onchange="updateHours()"></select>
+						</div>
+						<div>
+							<label for="time">Time</label>
+							<select required id="time"></select>
+						</div>
 					</div>
 				</div>
-				<ul class="actions">
+				<ul class="actions result">
 					<li><input type="submit" value="RESULT" class="primary" /></li>
 				</ul>
 			</form>
@@ -104,23 +121,8 @@
 			<script src="static/js/browser.min.js"></script>
 			<script src="static/js/breakpoints.min.js"></script>
 			<script src="static/js/util.js"></script>
-			<script>
-				const input = document.getElementById('demo-name');
-				const minDate = new Date('2010-01-01');
-				const maxDate = new Date('2023-12-31');
-				const today = new Date();
+			<script src="static/js/date.js"></script>
 
-				input.addEventListener('input', function() {
-					const inputValue = input.value;
-					const inputDate = new Date(inputValue);
-
-					if (inputDate < minDate || inputDate > maxDate || isNaN(inputDate) || inputDate > today) {
-						input.setCustomValidity('Enter a valid date between 2010 and TODAY (YYYY-MM-DD)');
-					} else {
-						input.setCustomValidity('');
-					}
-				});
-			</script>
 			<script src="static/js/result.js"></script>
 			<script src="static/js/main.js"></script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLMZHPxF-a2DKkHLtDFJYXw7xBdX_szpo&callback=initMap"></script>
