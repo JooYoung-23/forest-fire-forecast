@@ -20,6 +20,15 @@ const predictMonth = predictTime.getMonth() + 1; // Months are zero-based
 const predictDay = predictTime.getDate();
 const predictHour = predictTime.getHours();
 
+function showResult()
+{
+    document.getElementById("year").value = "{{ year }}";
+    updateMonths("{{ year }}");
+    document.getElementById("month").value = "{{ month }}";
+    document.getElementById("day").value = "{{ day }}";
+    document.getElementById("time").value = "{{ time }}";
+}
+
 function initHours()
 {
     let select = document.getElementById("time");

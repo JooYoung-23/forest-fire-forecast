@@ -16,28 +16,28 @@
 	<body class="is-preload" id="myself_body">
 
 		<div id=request_container>
-			<form method="post" action="#">
+			<form method="get" action="#">
 				<div class="fields">
 					<div id="input_date" class="field">
 						<div>
 							<label for="year">Year</label>
-							<select id="year" required onchange="updateMonths(this.value)">
+							<select name = "year" id="year" required onchange="updateMonths(this.value)">
 							</select>
 						</div>
 
 						<div>
 							<label for="month">Month</label>
-							<select required id="month" onchange="updateDays()">
+							<select name = "month" required id="month" onchange="updateDays()">
 							</select>
 						</div>
 
 						<div>
 							<label for="day">Day</label>
-							<select required id="day" onchange="updateHours()"></select>
+							<select name = "day" required id="day" onchange="updateHours()"></select>
 						</div>
 						<div>
 							<label for="time">Time</label>
-							<select required id="time"></select>
+							<select name = "time" required id="time"></select>
 						</div>
 					</div>
 				</div>
@@ -122,7 +122,12 @@
 			<script src="static/js/breakpoints.min.js"></script>
 			<script src="static/js/util.js"></script>
 			<script src="static/js/date.js"></script>
-
+			<script>
+				document.getElementById("year").value = "{{ year }}";
+				document.getElementById("month").value = "{{ month }}";
+				document.getElementById("day").value = "{{ day }}";
+				document.getElementById("time").value = "{{ time }}";
+			</script>
 			<script src="static/js/result.js"></script>
 			<script src="static/js/main.js"></script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLMZHPxF-a2DKkHLtDFJYXw7xBdX_szpo&callback=initMap"></script>

@@ -8,12 +8,14 @@ def index():
 
 @app.route('/result', methods=['GET', 'POST'])
 def result():
-    date = request.form.get('demo-name')
-    print("year : ", date[:4])
-    print("month : ", date[5:7])
-    print("day : ", date[8:10])
+    date = request.args.to_dict();
+    year = date['year'];
+    month = date['month'];
+    day = date['day'];
+    time = date['time'];
+    print(year, month, day, time);
 
-	return render_template("result.html")
+    return render_template("result.html", year=year, month=month, day=day, time=time)
 
 @app.route('/method', methods=['GET', 'POST'])
 def method():

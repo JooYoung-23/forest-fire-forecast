@@ -26,28 +26,28 @@
 						</div>
 						<div class="content">
 							<div class="inner">
-								<form method="post" action="/result">
+								<form method="get" action="/result">
 									<div class="fields">
 										<div id="input_date" class="field">
 											<div>
 												<label for="year">Year</label>
-												<select id="year" required onchange="updateMonths(this.value)">
+												<select name = "year" id="year" required onchange="updateMonths(this.value)">
 												</select>
 											</div>
 
 											<div>
 												<label for="month">Month</label>
-												<select required id="month" onchange="updateDays()">
+												<select name = "month" required id="month" onchange="updateDays()">
 												</select>
 											</div>
 
 											<div>
 												<label for="day">Day</label>
-												<select required id="day" onchange="updateHours()"></select>
+												<select name = "day" required id="day" onchange="updateHours()"></select>
 											</div>
 											<div>
 												<label for="time">Time</label>
-												<select required id="time"></select>
+												<select name = "time" required id="time"></select>
 											</div>
 										</div>
 									</div>
