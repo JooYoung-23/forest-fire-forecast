@@ -1,8 +1,9 @@
 from flask import Flask, request, render_template
-from scheduling import *
+from static.py.scheduling import *
 
 app = Flask(__name__)
 
+scheduling_data_update()
 @app.route('/')
 def index():
     return render_template("index.html")
