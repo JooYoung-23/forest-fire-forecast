@@ -124,8 +124,11 @@
 			<script src="static/js/date.js"></script>
 			<script>
 				document.getElementById("year").value = "{{ year }}";
+				updateMonths("{{ year }}");
 				document.getElementById("month").value = "{{ month }}";
+				updateDays();
 				document.getElementById("day").value = "{{ day }}";
+				updateHours();
 				document.getElementById("time").value = "{{ time }}";
 			</script>
 			<script src="static/js/result.js"></script>
