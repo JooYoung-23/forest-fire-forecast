@@ -1,58 +1,30 @@
 function putLayerOnMap(map, pathOfGeoJson) {
     var xhr = new XMLHttpRequest();
-
     xhr.open('GET', pathOfGeoJson, true);
     xhr.onload = function() {    
         if (xhr.status === 200) {
             var geojson = JSON.parse(xhr.responseText);
-
             var geojsonLayer = new google.maps.Data({
                 style: function(feature) {
                     return {
-                        strokeWeight: 1,
+                        strokeWeight: 2,
                         strokeOpacity: 1,
                         strokeColor: 'white',
                         fillOpacity: 0
                     };
-                }
+                },
             });
-
             geojsonLayer.addGeoJson(geojson);
-
             geojsonLayer.addListener('click', function(event) {
-				const feature = event.feature;
-				const sggName = feature.getProperty('SGG_NM');
-				const risk = feature.getProperty('risk');
-
-				//document.getElementById('name').innerHTML = sggName;
-				//document.getElementById('risk').innerHTML = risk;
-
 				const infoBox = document.getElementById('intro');
 				infoBox.style.display = 'block';
 				window.location.href = '#intro';
-
-				/*
-                const resultImage = document.getElementById('image_result');
-				const resultPath = '../static/DB/result/';
-				resultImage.src = resultPath + date_dir + '/' + sggName + "/result.png";
-				resultImage.alt = resultPath + date_dir + '/' + sggName +"/result.png";
-
-				for (let i = 1; i <= 4; i++) {
-					const prevButton = document.getElementById(`div${i}`).querySelector("#prevButton");
-					const nextButton = document.getElementById(`div${i}`).querySelector("#nextButton");
-					prevButton.onclick = function(){prevImage(sggName, `div${i}`, 4)};
-					nextButton.onclick = function(){nextImage(sggName, `div${i}`, 4)};
-					toggleImage(sggName, `div${i}`, 0);
-				}
-                */
 			});
-
             geojsonLayer.setMap(map);
         } else {
             console.log('Failed to load Gangwon_regions file');
         }
     };
-
     xhr.send();
 }
 

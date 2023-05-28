@@ -7,6 +7,31 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+.boundary{
+	position: relative;
+}
+.boundary::after{
+	content: attr(data-title);
+	position: absolute;
+	background: #fff;
+	color: #dc2e02;
+	left: 62%;
+	top: 25%;
+	font-size: 14px;
+	padding: 20px;
+	font-weight: bold;
+	border-radius: 8px;
+	transition: 300ms;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(15px);
+	z-index: 5;
+}
+.boundary:hover::after{
+	opacity: 0.85;
+	transform: translateY(5px);
+}
+
 .wrapper_height{
 	height: 80vh !important;
 }
@@ -956,6 +981,8 @@ input, select, textarea {
 	}
 	ul.actions.result {
 		padding-left: 22%;
+		padding-top: 1rem;
+		padding-bottom: 0.5rem;
 	}
 	ul.actions {
 		display: -moz-flex;
