@@ -121,11 +121,11 @@ function updateHours() {
     const year = document.getElementById("year").value;
     const month = document.getElementById("month").value;
     const day = document.getElementById("day").value;
+    const time = select.childNodes;
+    for (let i = 1; i < 24; i++)
+        time[i].hidden = false;
     if (year == predictYear && month == predictMonth && day == predictDay)
     {
-        const time = select.childNodes;
-        for (let i = 1; i < 24; i++)
-            time[i].hidden = false;
         for (let i = predictHour; i < 24; i++)
             time[i].hidden = true;
     }

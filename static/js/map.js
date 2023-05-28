@@ -3,7 +3,7 @@ let historicalOverlay;
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
-    center: { lat: 37.823415370646885, lng: 128.2391451745438 },
+    center: { lat: 37.824241353383464, lng: 128.23000000000002 },
     styles: [
         {
             "elementType": "geometry",
@@ -229,10 +229,11 @@ function initMap() {
     };
 
     historicalOverlay = new google.maps.GroundOverlay(
-        "../static/images/slope_gw.png",
+        "../static/DB/result/" + date_dir + "/result.png",
         imageBounds
     );
     historicalOverlay.setMap(map);
+
 	putLayerOnMap(map, '../static/data/Gangwon_regions.geojson');
 }
 

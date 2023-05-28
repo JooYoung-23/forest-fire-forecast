@@ -1,5 +1,5 @@
 import threading
-import schedule
+import scheduling
 import datetime
 
 def update_weather():
@@ -16,11 +16,11 @@ def run_threaded(job_func):
 
 def schedule_thread():
 	while True:
-		schedule.run_pending()
+		scheduling.run_pending()
 
 
 def scheduling_data_update():
-	schedule.every().hour.at(":00").do(run_threaded, update_weather)
-	schedule.every().hour.at(":30").do(run_threaded, update_weather)
+	scheduling.every().hour.at(":00").do(run_threaded, update_weather)
+	scheduling.every().hour.at(":30").do(run_threaded, update_weather)
 	thread = threading.Thread(target=schedule_thread)
 	thread.start()

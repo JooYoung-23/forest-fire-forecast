@@ -54,59 +54,37 @@
 			<article id="intro">
 				<h2 class="major"><span id="name"></span></h2>
 				<div id="result_container">
-					<div id="result">
-						<img id="image_result" src="../static/images/result.png" alt="Image" width="300" height="auto"/>
-					</div>
 					<div class="radio">
-						<input type="radio" name="radioButton" value="1" onclick="showDiv('div1')" checked> <i class="fa fa-check-circle checked" aria-hidden="true"></i> Option 1<br>
+						<h4><span>기상 요인</span><br></h4>
+						<input type="radio" name="radioButton" value="temp" onclick="selectInfo()" checked> <i class="fa fa-check-circle checked" aria-hidden="true"></i> 기온<br>
+						<input type="radio" name="radioButton" value="rainfall" onclick="selectInfo()"> <i class="fa fa-check-circle" aria-hidden="true"></i> 강수량<br>
+						<input type="radio" name="radioButton" value="humidity" onclick="selectInfo()"> <i class="fa fa-check-circle" aria-hidden="true"></i> 습도<br>
+						<input type="radio" name="radioButton" value="wind" onclick="selectInfo()"> <i class="fa fa-check-circle" aria-hidden="true"></i> 풍속<br>
+						<br><h4><span>지형적 요인</span></h4>
+						<input type="radio" name="radioButton" value="slope" onclick="selectInfo()"> <i class="fa fa-check-circle" aria-hidden="true"></i> 기울기<br>
+						<br><h4><span>인적 요인</span></h4>
+						<input type="radio" name="radioButton" value="landuse" onclick="selectInfo()"> <i class="fa fa-check-circle" aria-hidden="true"></i> Land Use<br>
+						
+						<!--<input type="radio" name="radioButton" value="3" onclick="showDiv('div3')"> <i class="fa fa-check-circle" aria-hidden="true"></i> Option 3<br>
+						<input type="radio" name="radioButton" value="4" onclick="showDiv('div4')"> <i class="fa fa-check-circle" aria-hidden="true"></i> Option 4<br>
+						<input type="radio" name="radioButton" value="1" onclick="showDiv('div1')" checked> <i class="fa fa-check-circle" aria-hidden="true"></i> Option 1<br>
 						<input type="radio" name="radioButton" value="2" onclick="showDiv('div2')"> <i class="fa fa-check-circle" aria-hidden="true"></i> Option 2<br>
 						<input type="radio" name="radioButton" value="3" onclick="showDiv('div3')"> <i class="fa fa-check-circle" aria-hidden="true"></i> Option 3<br>
-						<input type="radio" name="radioButton" value="4" onclick="showDiv('div4')"> <i class="fa fa-check-circle" aria-hidden="true"></i> Option 4<br>
+						<input type="radio" name="radioButton" value="4" onclick="showDiv('div4')"> <i class="fa fa-check-circle" aria-hidden="true"></i> Option 4<br>-->
 					</div>
-					<div id="visualization">
-						<div id="div1" class="">
-							<h4 class="major">SUMMARY: what</h4>
-							<div class="visualization_img_container">
-								<button id="prevButton">Previous</button>
-								<div class="img_container">
-									<img id="summary" src="../static/images/summary/평창군/0.png" alt="Image" />
-								</div>
-								<button id="nextButton">Next</button>
-							</div>
+					<div id="view_result" class="visualization">
+						<div class="image_title" class="">
+							<h3 class="major">예측 결과</h3>
 						</div>
-						<div id="div2" class="hidden">
-							<h4 class="major">WEATHER: what</h4>
-							<div class="visualization_img_container">
-								<button id="prevButton">Previous</button>
-								<div class="img_container">
-									<img id="weather" src="../static/images/weather/0.png" alt="Image" />
-								</div>
-								<button id="nextButton">Next</button>
-							</div>
+						<img id="image_result" src="../static/DB/result/{{ date }}/result.png" alt="Image" width="400" height="auto"/>
+					</div>
+					<div id="view_info" class="visualization">
+						<div class="image_title" class="">
+							<h3 class="major">인자</h3>
 						</div>
-						<div id="div3" class="hidden">
-							<h4 class="major">LAND: what</h4>
-							<div class="visualization_img_container">
-								<button id="prevButton">Previous</button>
-								<div class="img_container">
-									<img id="land" src="../static/images/land/0.png" alt="Image" />
-								</div>								
-								<button id="nextButton">Next</button>
-							</div>
-						</div>
-						<div id="div4" class="hidden">
-							<h4 class="major">HUMAN: what</h4>
-							<div class="visualization_img_container">
-								<button id="prevButton">Previous</button>
-								<div class="img_container">
-									<img id="human" src="../static/images/human/평창군/0.png" alt="Image" />
-								</div>
-								<button id="nextButton">Next</button>
-							</div>
-						</div>
+						<img id="image_info" src="" alt="Image" width="400" height="auto"/>
 					</div>
 				</div>
-				<p>Risk Level: <span id="risk"></span></p>
 			</article>
 		</div>
 
@@ -131,6 +109,10 @@
 				updateHours();
 				document.getElementById("time").value = "{{ time }}";
 			</script>
+			<script type="text/javascript">
+				var date_dir = "{{ date }}"
+			</script>
+			<script src="static/js/map.js"></script>
 			<script src="static/js/result.js"></script>
 			<script src="static/js/main.js"></script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLMZHPxF-a2DKkHLtDFJYXw7xBdX_szpo&callback=initMap"></script>

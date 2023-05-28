@@ -11,7 +11,7 @@ function putLayerOnMap(map, pathOfGeoJson) {
                     return {
                         strokeWeight: 1,
                         strokeOpacity: 1,
-                        strokeColor: 'black',
+                        strokeColor: 'white',
                         fillOpacity: 0
                     };
                 }
@@ -24,17 +24,18 @@ function putLayerOnMap(map, pathOfGeoJson) {
 				const sggName = feature.getProperty('SGG_NM');
 				const risk = feature.getProperty('risk');
 
-				document.getElementById('name').innerHTML = sggName;
-				document.getElementById('risk').innerHTML = risk;
+				//document.getElementById('name').innerHTML = sggName;
+				//document.getElementById('risk').innerHTML = risk;
 
 				const infoBox = document.getElementById('intro');
 				infoBox.style.display = 'block';
 				window.location.href = '#intro';
 
-				const resultImage = document.getElementById('image_result');
-				const resultPath = '../static/images/result/';
-				resultImage.src = resultPath + sggName + ".png";
-				resultImage.alt = resultPath + sggName + ".png";
+				/*
+                const resultImage = document.getElementById('image_result');
+				const resultPath = '../static/DB/result/';
+				resultImage.src = resultPath + date_dir + '/' + sggName + "/result.png";
+				resultImage.alt = resultPath + date_dir + '/' + sggName +"/result.png";
 
 				for (let i = 1; i <= 4; i++) {
 					const prevButton = document.getElementById(`div${i}`).querySelector("#prevButton");
@@ -43,6 +44,7 @@ function putLayerOnMap(map, pathOfGeoJson) {
 					nextButton.onclick = function(){nextImage(sggName, `div${i}`, 4)};
 					toggleImage(sggName, `div${i}`, 0);
 				}
+                */
 			});
 
             geojsonLayer.setMap(map);
@@ -54,7 +56,68 @@ function putLayerOnMap(map, pathOfGeoJson) {
     xhr.send();
 }
 
-function showDiv(divId) {
+function selectInfo()
+{
+    let radioBtns = document.getElementsByName("radioButton");
+
+    for (var i = 0; i < radioBtns.length; i++) {
+        var icon = radioBtns[i].nextElementSibling;
+
+        if (radioBtns[i].checked) {
+            icon.classList.remove("unchecked");
+            icon.classList.add("checked");
+        } else {
+            icon.classList.remove("checked");
+            icon.classList.add("unchecked");
+        }
+    }
+    showInfo();
+}
+
+function showInfo()
+{
+    let checked = document.querySelector('input[name="radioButton"]:checked');
+    let img_info = document.getElementById('image_info');
+    let src_path = "ERROR";
+    let title = "ERROR IS OCCURED.";
+
+    if (checked.value == "temp")
+    {
+        src_path = "../static/DB/weather/" + date_dir + '/' + checked.value + ".png"
+        title = " 기상 요인: 기온"
+    }
+    else if (checked.value == "rainfall")
+    {
+        src_path = "../static/DB/weather/" + date_dir + '/' + checked.value + ".png"
+        title = " 기상 요인: 강수량"
+    }
+    else if (checked.value == "humidity")
+    {
+        src_path = "../static/DB/weather/" + date_dir + '/' + checked.value + ".png"
+        title = " 기상 요인: 습도"
+    }
+    else if (checked.value == "wind")
+    {
+        src_path = "../static/DB/weather/" + date_dir + '/' + checked.value + ".png"
+        title = " 기상 요인: 풍속"
+    }
+    else if (checked.value == "slope")
+    {
+        src_path = "../static/DB/land/"  + checked.value + ".png"
+        title = " 지형 요인: 기울기"
+    }
+    else if (checked.value == "landuse")
+    {
+        src_path = "../static/DB/human/"  + checked.value + ".png"
+        title = " 인적 요인: 기온"
+    }
+    img_info.src = src_path;
+    document.querySelector('#view_info .image_title').innerHTML = "<h3 class='major'>" + title + "</h3>"
+}
+
+showInfo();
+
+/*function showDiv(divId) {
     var div = document.getElementById(divId);
     var radioValue = document.querySelector('input[name="radioButton"]:checked').value;
     
@@ -86,7 +149,6 @@ function showDiv(divId) {
 function nextImage(sggName, divId, numImages) {
     var currentImageIndex = parseInt(getCurrentImageIndex(divId));
     var nextImageIndex = (currentImageIndex + 1) % numImages;
-    console.log(currentImageIndex, currentImageIndex + 1, nextImageIndex, (currentImageIndex + 1) % numImages, numImages)
     toggleImage(sggName, divId, nextImageIndex);
 }
 
@@ -106,19 +168,19 @@ function getCurrentImageIndex(divId) {
 
 function getDir(divId, sggName)
 {
-    var path = "../static/images";
+    var path = "../static/DB";
     var dir = "";
     if (divId == 'div1'){
-        dir = path + "/summary/" + sggName + '/';
+        dir = path + "/result/" + date_dir + '/' +  sggName+ '/';
     }
     else if (divId == 'div2'){
-        dir = path + "/weather/" + sggName + '/';
+        dir = path + "/weather/" + date_dir + '/' +  sggName+ '/';
     }
     else if (divId == 'div3'){
-        dir = path + "/land/" + sggName + '/';
+        dir = path + "/land/" + date_dir + '/' +  sggName+ '/';
     }
     else if (divId == 'div4'){
-        dir = path + "/human/" + sggName + '/';
+        dir = path + "/human/" + date_dir + '/' +  sggName+ '/';
     }
     return dir;
 }
@@ -130,4 +192,4 @@ function toggleImage(sggName, divId, newIndex) {
     var image = div.querySelector("img");
     image.src = dir + newIndex.toString() + ".png";
     image.alt = dir + newIndex.toString() + ".png";
-}
+}*/

@@ -43,7 +43,9 @@
 }
 
 #result_container .radio{
-	width: 10%;
+	width: 20%;
+	margin-left: 2rem;
+	padding-top: 2rem;
 }
 
 #result_container #result{
@@ -53,7 +55,19 @@
 	height: 300px;
 }
 
-#result_container #visualization{
+.visualization{
+	flex-grow: 1;
+	width: 100%;
+	height: 400px;
+	margin: auto;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+/* #result_container #visualization{
 	flex-grow: 1;
 	width: 100%;
 	height: 300px;
@@ -98,11 +112,7 @@
 #result_container #visualization h4 {
 	margin: auto;
 	text-align: center;
-}
-
-#result_container .radio{
-	padding-top: 80px;
-}
+} */
 
 #intro .radio{
 	justify-content: center;
@@ -160,6 +170,10 @@
 	justify-content: center;
 	flex-direction: column;
 	width: 500px;
+}
+
+.image_title{
+	padding-bottom: 2rem;
 }
 
 #map {
